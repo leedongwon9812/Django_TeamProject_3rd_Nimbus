@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>My Account</h1>			
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+        <script src="{% static '/js/trim.js' %}"></script>
+        <script language="javascript">
+            function check() {
+                var nameval = f.name.value;
+                nameval = trim(nameval);
+                if (nameval.length == 0) {
+                    alert("Please enter your name");
+                    f.name.value = "";
+                    f.name.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(nameval, 12);
+                    if (!pass) {
+                        alert("Name is too long");
+                        f.name.focus();
+                        return false;
+                    }
+                }
+                var idval = f.email.value;
+                idval = trim(idval);
+                if (idval.length == 0) {
+                    alert("Please enter your E-mail");
+                    f.email.value = "";
+                    f.email.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(idval, 20);
+                    if (!pass) {
+                        alert("E-mail is too long");
+                        f.email.focus();
+                        return false;
+                    }
+                }
+                var nickval = f.nick.value;
+                nickval = trim(nickval);
+                if (nickval.length == 0) {
+                    alert("Please enter your Nickname");
+                    f.nick.value = "";
+                    f.nick.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(nickval, 30);
+                    if (!pass) {
+                        alert("Nickname is too long");
+                        f.nick.focus();
+                        return false;
+                    }
+                }
+                var telval = f.tel.value;
+                telval = trim(telval);
+                if (telval.length == 0) {
+                    alert("Please enter your telephone number");
+                    f.tel.value = "";
+                    f.tel.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(telval, 11);
+                    if (!pass) {
+                        alert("Telephone number is too long");
+                        f.tel.focus();
+                        return false;
+                    }
+                }
+                var pwdval = f.pwd.value;
+                pwdval = trim(pwdval);
+                if (pwdval.length == 0) {
+                    alert("Please enter your password");
+                    f.pwd.value = "";
+                    f.pwd.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(pwdval, 12);
+                    if (!pass) {
+                        alert("Password is too long");
+                        f.pwd.focus();
+                        return false;
+                    }
+                }
+                
+                f.submit();
+                  /* alert("수정완료됨");*/
+                      
+                   
+            }
+            function checkByteLen(str, size) {
+                var byteLen = getByteLen(str);
+                if (byteLen <= size) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function getByteLen(str) {
+                return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+            }
+
+            function enterCheck(elm) {
+                if (event.keyCode == 13) {
+                    if (elm == f.email) {
+                        f.pwd.focus();
+                    } else {
+                        check();
+                    }
+                }
+            }
+        </script>
+				
+		<section id="content"> 	
+			<div class="section p-0 m-0 h-100 position-absolute" style="background: url('{% static '/demos/music/images/plant.jpg' %}') center center no-repeat; background-size: cover;"></div><!-- 배경삽입 끝 -->		
+			<div class="content-wrap">									
+			
+			    <div class="content-wrap py-0"> 
+				<div class="container clearfix">
+					<div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;">
+						<ul class="tab-nav tab-nav2 center clearfix">					
+
+							
+							<!--  입력폼 시작
+							================  -->
+							<div class="tab-content" id="tab-register">
+								<div class="card mb-0;" style = "background-color: rgba(255,255,255,0.6);">
+									<div class="card-body" style="padding: 40px;">
+										<h3>Edit member information</h3>
+
+										<form id="account-form" name="f" class="row mb-0" action="account_ok" method="post">
+											{% csrf_token %}
+											<div class="col-12 form-group">
+												<label for="account-form-name">Name:</label>
+												<input type="text" id="account-formm-name" name="name" value="{{name}}" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="account-form-email">Email Address:</label>
+												<input type="text" id="account-form-email" name="email" value="{{email}}" class="form-control" readonly/>
+											</div>
+							
+											<div class="col-12 form-group">
+												<label for="account-form-nick">Nickname:</label>
+												<input type="text" id="account-form-nick" name="nick" value="{{nick}}" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="account-form-phone">Telephone:</label>
+												<input type="text" id="account-form-phone" name="tel" value="{{tel}}" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<label for="account-form-password">Password:</label>
+												<input type="password" id="account-form-password" name="pwd" value="" class="form-control" />
+											</div>  
+                                            <div><h4 style="margin-bottom: 15px;">{{error_}}</h4></div>
+                                            
+
+											<div class="col-12 form-group">
+												<input type="button" class="button button-3d button-black m-0" id="register-form-submit" name="register-form-submit" value="Edit" onclick="check()"></input>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+{% endblock %}

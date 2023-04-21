@@ -1,0 +1,316 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,400i,600,700|Montserrat:300,400,700|Caveat+Brush&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/bootstrap.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/style.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/dark.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/swiper.css' %}" type="text/css" />
+
+	<!-- Music Specific Stylesheet -->
+	<link rel="stylesheet" href="{% static '/demos/music/music.css' %}" type="text/css" />
+	<!-- / -->
+
+	<link rel="stylesheet" href="{% static '/css/font-icons.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/one-page/css/et-line.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/animate.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/magnific-popup.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static '/demos/music/css/fonts.css' %}" type="text/css" />
+
+	<!-- Bootstrap Switch CSS -->
+	<link rel="stylesheet" href="{% static '/css/components/bs-switches.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static '/css/custom.css' %}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Theme color -->
+	<link rel="stylesheet" href="{% static '/css/colors.php?color=ed215e' %}" type="text/css" />
+
+	<!-- Audio Player Plugin CSS -->
+	<link rel="stylesheet" href="{% static '/demos/music/css/mediaelement/mediaelementplayer.css' %}">
+
+	<!-- 추가한 CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" type="text/css" />
+	<link rel="stylesheet" href="{% static '/css/components/bs-filestyle.css' %}" type="text/css" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Music Steaming | Canvas</title>
+
+	<style>
+		.css3-spinner { background-color: #131722; }
+	</style>
+
+</head>
+
+<body class="stretched bg-color2" data-loader="4" data-loader-color="theme">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix" style="margin-bottom: 40px">
+
+		<!-- Header
+		============================================= -->
+		<!-- <header id="header" class="full-header transparent-header dark no-sticky header-size-md"> -->
+        <header id="header" class="full-header dark no-sticky header-size-md">
+            
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+							<a href="/" class="standard-logo" data-dark-logo="{% static '/demos/music/images/logo_nimbus.png' %}"><img src="{% static '/demos/music/images/logo.png' %}" alt="Canvas Logo"></a>
+							<!-- <a href="index.html" class="standard-logo" data-dark-logo="{% static '/demos/music/images/logo-dark.png' %}"><img src="{% static '/demos/music/images/logo.png' %}" alt="Canvas Logo"></a> -->
+							<a href="/" class="retina-logo" data-dark-logo="{% static '/demos/music/images/logo-dark@2x.png' %}"><img src="{% static '/demos/music/images/logo@2x.png' %}" alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div class="header-misc">
+
+							<!-- Top Search
+							============================================= -->
+							<!--<div id="top-search" class="header-misc-icon">
+								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
+							</div>--><!-- #top-search end -->
+
+						</div>
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100"><path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path><path d="m 30,50 h 40"></path><path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path></svg>
+						</div>
+
+						<h5 style="margin-bottom: 0px; margin-right: 10px">{{log_nick}}</h5>
+						<!-- Primary Navigation
+						============================================= -->
+						<!--
+						<nav class="primary-menu not-dark">
+
+							<ul class="menu-container">
+								<li class="menu-item active"><a class="menu-link" href=""><div>Home</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="#"><div>Musics</div></a>
+									<ul class="sub-menu-container">
+										<li class="menu-item"><a class="menu-link" href="#"><div>Featured</div></a></li>
+										<li class="menu-item"><a class="menu-link" href="#"><div>New Arrivals</div></a></li>
+										<li class="menu-item"><a class="menu-link" href="#"><div>Old Popular</div></a></li>
+										<li class="menu-item"><a class="menu-link" href="#"><div>Top 90's</div></a></li>
+									</ul>
+								</li>
+								
+								<li class="menu-item"><a class="menu-link" href="#"><div>About</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="#"><div>Discover</div></a></li>
+							
+								<li class="menu-item"><a class="menu-link" href="#"><div>Artists</div></a>
+									<ul class="sub-menu-container">
+										<li class="menu-item"><a class="menu-link" href="#"><div>A-Z Artists</div></a></li>
+										<li class="menu-item"><a class="menu-link" href="#"><div>New Artists</div></a></li>
+										<li class="menu-item"><a class="menu-link" href="#"><div>Popular Artists</div></a></li>
+									</ul>
+								</li>
+								
+								<li class="menu-item"><a class="menu-link" href="#"><div>Videos</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="#"><div>Contact</div></a></li>
+								
+							</ul>
+
+						</nav>
+						--><!-- #primary-menu end -->
+						
+						<a href="/{{login_link}}" class="button button-rounded si-facebook si-colored">{{login_butt}}</a>
+						<a href="/{{signup_link}}" class="button button-rounded si-twitter si-colored">{{signup_butt}}</a>
+<!--
+						<form class="top-search-form" action="search.html" method="get">
+							<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." autocomplete="off">
+						</form>
+-->
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		{% block content %}
+
+		{% endblock %}
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="border-0 dark" style="background-color: #111;">
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights" style="color: #444;">
+				<div class="container clearfix">
+
+					<div class="row justify-content-between col-mb-30">
+						<div class="col-12 col-lg-auto text-center text-lg-start">
+							Copyrights &copy; 2023 All Rights Reserved by Nimbus Inc.
+						</div>
+
+						<div class="col-12 col-lg-auto text-center text-lg-end">
+							<a href="https://www.facebook.com/" class="social-icon inline-block si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="https://twitter.com/?lang=ko" class="social-icon inline-block si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+							<a href="https://www.pinterest.co.kr/" class="social-icon inline-block si-small si-borderless si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+							<a href="https://www.google.co.kr/" class="social-icon inline-block si-small si-borderless si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+							<a href="https://mail.google.com/" class="social-icon inline-block si-small si-borderless si-email3">
+								<i class="icon-email3"></i>
+								<i class="icon-email3"></i>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Audio Player
+	============================================= -->
+	<audio id="audio-player" preload="none" class="mejs__player" controls data-mejsoptions='{"defaultAudioHeight": "50", "alwaysShowControls": "true"}' style="max-width:100%;">
+		<source src="{% static '/demos/music/src/audios/nashe-si.mp3' %}" type="audio/mp3">
+	</audio>
+
+	<!-- Default Track - onLoad
+	============================================= -->
+	<div id="track-onload" data-track="{% static '/upload/music/뉴진스-Hype_Boy.mp3' %}" data-poster="{% static '/upload/image/뉴진스-Hpye_Boy.jpg' %}" data-title="Hype Boy" data-singer="New Jeans"></div>
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up" style="bottom: 70px;"></div>
+
+	<!-- JavaScripts
+	============================================= -->
+    <script src="{% static '/js/jquery.js' %}"></script>
+	<script src="{% static '/js/plugins.min.js' %}"></script>
+
+    <!-- Bootstrap File Upload Plugin -->
+    <script src="{% static '/js/components/bs-filestyle.js' %}"></script>
+
+	<!-- Audio player Plugin
+	============================================= -->
+	<script src="{% static '/demos/music/js/mediaelement/mediaelement-and-player.js' %}"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="{% static '/js/functions.js' %}"></script>
+
+	<script>
+
+		// Custom Tab jQuery
+		// jQuery( '.tabs' ).on( 'tabsactivate', function( event, ui ) {
+		// 	var gridContainerAvailable = jQuery( ui.newPanel ).find('.grid-container');
+
+		// 	if( gridContainerAvailable.length > 0 ) {
+		// 		gridContainerAvailable.each( function(){
+		// 			var portfolioGrid = jQuery(this);
+
+		// 			if( !portfolioGrid.hasClass('tabs-enabled-grid-container') ) {
+		// 				portfolioGrid.isotope('layout');
+		// 				jQuery(window).trigger('resize');
+		// 				portfolioGrid.addClass('tabs-enabled-grid-container');
+		// 			}
+		// 		});
+		// 	}
+		// });
+
+		// Music playing Scripts
+		var trackPlaying = '',
+			audioPlayer = document.getElementById('audio-player');
+
+		audioPlayer.addEventListener("ended", function(){
+			jQuery('.track-list').find('i').removeClass('icon-pause').addClass('icon-play');
+		});
+
+		audioPlayer.addEventListener("pause", function(){
+			jQuery('.track-list').find('i').removeClass('icon-pause').addClass('icon-play');
+		});
+
+		function changeAudio( sourceUrl, posterUrl, trackTitle, trackSinger, playAudio = true ) {
+			var audio = $("#audio-player"),
+				clickEl = jQuery('[data-track="'+sourceUrl+'"]'),
+				playerId = audio.closest('.mejs__container').attr('id'),
+				playerObject = mejs.players[playerId];
+
+			jQuery('.track-list').find('i').removeClass('icon-pause').addClass('icon-play');
+
+			if( sourceUrl == trackPlaying ) {
+				if (playerObject.node.paused) {
+					playerObject.play();
+					clickEl.find('i').removeClass('icon-play').addClass('icon-pause');
+				} else {
+					playerObject.pause();
+					clickEl.find('i').removeClass('icon-pause').addClass('icon-play');
+				}
+				return true;
+			}
+
+			trackPlaying = sourceUrl;
+
+			audio.attr( 'poster', posterUrl );
+			audio.attr( 'title', trackTitle );
+
+			jQuery('.mejs__layers').html('').html('<div class="mejs-track-artwork"><img src="'+ posterUrl +'" alt="Track Poster" /></div><div class="mejs-track-details"><h3>'+ trackTitle +'<br><span>'+ trackSinger +'</span></h3></div>');
+
+			if( sourceUrl != '' ) {
+				playerObject.setSrc( sourceUrl );
+			}
+			playerObject.pause();
+			playerObject.load();
+
+			if( playAudio == true ) {
+				playerObject.play();
+				jQuery(clickEl).find('i').removeClass('icon-play').addClass('icon-pause');
+			}
+		}
+
+		jQuery('.track-list').on( 'click', function(){
+			var audioTrack = jQuery(this).attr('data-track'), // Track url
+				posterUrl = jQuery(this).attr('data-poster'), // Track Poster Image
+				trackTitle = jQuery(this).attr('data-title'); // Track Title
+				trackSinger = jQuery(this).attr('data-singer'); // Track Singer Name
+
+			changeAudio( audioTrack, posterUrl, trackTitle, trackSinger );
+			return false;
+		});
+
+		jQuery(window).on( 'load', function(){
+			var trackOnload = jQuery('#track-onload');
+
+			if( trackOnload.length > 0 ) {
+				var audioTrack = trackOnload.attr('data-track'), // Track url
+					posterUrl = trackOnload.attr('data-poster'), // Track Poster Image
+					trackTitle = trackOnload.attr('data-title'); // Track Title
+					trackSinger = trackOnload.attr('data-singer'); // Track Singer Name
+
+				setTimeout( function(){
+					changeAudio( audioTrack, posterUrl, trackTitle, trackSinger, false );
+				}, 500);
+			}
+		});
+
+	</script>
+
+</body>
+</html>

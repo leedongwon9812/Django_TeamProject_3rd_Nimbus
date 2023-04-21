@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>My Account</h1>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Pages</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Login</li>
+				</ol>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+        <script src="{% static '/js/trim.js' %}"></script>
+        <script language="javascript">
+            function check() {
+                var numberval = f.number.value;
+                numberval = trim(numberval);
+                if (numberval.length == 0) {
+                    alert("Please enter your code");
+                    f.number.value = "";
+                    f.number.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(numberval, 7);
+                    if (!pass) {
+                        alert("Name is too long");
+                        f.number.focus();
+                        return false;
+                    }
+                }
+                var idval = f.email.value;
+                idval = trim(idval);
+                if (idval.length == 0) {
+                    alert("Please enter your E-mail");
+                    f.email.value = "";
+                    f.email.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(idval, 20);
+                    if (!pass) {
+                        alert("E-mail is too long");
+                        f.email.focus();
+                        return false;
+                    }
+                }
+                var nickval = f.nick.value;
+                nickval = trim(nickval);
+                if (nickval.length == 0) {
+                    alert("Please enter your Nickname");
+                    f.nick.value = "";
+                    f.nick.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(nickval, 30);
+                    if (!pass) {
+                        alert("Nickname is too long");
+                        f.nick.focus();
+                        return false;
+                    }
+                }
+                var pwdval = f.pwd.value;
+                pwdval = trim(pwdval);
+                if (pwdval.length == 0) {
+                    alert("Please enter your password");
+                    f.pwd.value = "";
+                    f.pwd.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(pwdval, 12);
+                    if (!pass) {
+                        alert("Password is too long");
+                        f.pwd.focus();
+                        return false;
+                    }
+                }
+                var pwd2val = f.pwd2.value;
+                pwd2val = trim(pwd2val);
+                if (pwd2val.length == 0) {
+                    alert("Please re-enter your password");
+                    f.pwd2.value = "";
+                    f.pwd2.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(pwd2val, 12);
+                    if (!pass) {
+                        alert("Password is too long");
+                        f.pwd2.focus();
+                        return false;
+                    }
+                }
+                if (pwdval != pwd2val) {
+                    alert("Passwords do not match");
+                    return false;
+                }
+                f.submit();
+            }
+
+            function checkByteLen(str, size) {
+                var byteLen = getByteLen(str);
+                if (byteLen <= size) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function getByteLen(str) {
+                return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+            }
+
+            function enterCheck(elm) {
+                if (event.keyCode == 13) {
+                    if (elm == f.email) {
+                        f.pwd.focus();
+                    } else {
+                        check();
+                    }
+                }
+            }
+        </script>
+				
+		<section id="content"> 	
+			<div class="section p-0 m-0 h-100 position-absolute" style="background: url('{% static '/demos/music/images/plant.jpg' %}') center center no-repeat; background-size:cover;"></div><!-- 배경삽입 끝 -->		
+			<div class="content-wrap">
+				<!-- 배경삽입부 -->						
+			
+			    <div class="content-wrap py-0"> 
+				<div class="container clearfix">
+					<div class="tabs mx-auto mb-0 clearfix" id="tab-login-register" style="max-width: 500px;">
+						<ul class="tab-nav tab-nav2 center clearfix">					
+
+							<!--<li class="inline-block"><a href="#tab-login">Login</a></li>
+							<li class="inline-block"><a href="#tab-register">Register</a></li>
+						</ul>
+
+						<div class="tab-container">
+
+							<div class="tab-content" id="tab-login">
+								<div class="card mb-0">
+									<div class="card-body" style="padding: 40px;">
+										<form id="login-form" name="login-form" class="mb-0" action="#" method="post">
+
+											<h3>Login to your Account</h3>
+
+											<div class="row">
+												<div class="col-12 form-group">
+													<label for="login-form-username">Username:</label>
+													<input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
+												</div>
+
+												<div class="col-12 form-group">
+													<label for="login-form-password">Password:</label>
+													<input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+												</div>
+
+												<div class="col-12 form-group">
+													<button class="button button-3d button-black m-0" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+													<a href="#" class="float-end">Forgot Password?</a>
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div> -->
+
+							<!-- register 입력란 시작
+							================  -->
+
+							<div class="tab-content" id="tab-register">
+								<div class="card mb-0;" style = "background-color: rgba(255,255,255,0.6);">
+									<div class="card-body" style="padding: 40px;">
+										<h3>Register for an Account</h3>
+
+										<form id="register-form" name="f" class="row mb-0" action="forgot_code_check_ok" method="post">
+											{% csrf_token %}
+											<div class="col-12 form-group">
+												<label for="register-form-name">code:</label>
+												<input type="text" id="register-form-name" name="number" value="" class="form-control" />
+											</div>
+
+											<div class="col-12 form-group">
+												<button class="button button-3d button-black m-0" id="register-form-submit" name="register-form-submit" value="register" onclick="check()">Register Now</button>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+		<!-- Content
+		============================================= -->
+        <script src="{% static '/js/trim.js' %}"></script>
+        <script language="javascript">
+            function check() {
+                var titleval = f.title.value;
+                titleval = trim(titleval);
+                if (titleval.length == 0) {
+                    alert("Please enter music title");
+                    f.title.value = "";
+                    f.title.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(titleval, 45);
+                    if (!pass) {
+                        alert("Title is too long");
+                        f.title.focus();
+                        return false;
+                    }
+                }
+                var singerval = f.singer.value;
+                singerval = trim(singerval);
+                if (singerval.length == 0) {
+                    alert("Please enter singer name");
+                    f.singer.value = "";
+                    f.singer.focus();
+                    return false;
+                } else {
+                    pass = checkByteLen(singerval, 45);
+                    if (!pass) {
+                        alert("Singer name is too long");
+                        f.singer.focus();
+                        return false;
+                    }
+                }
+                
+                f.submit();
+            }
+
+            function checkByteLen(str, size) {
+                var byteLen = getByteLen(str);
+                if (byteLen <= size) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function getByteLen(str) {
+                return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+            }
+            
+        </script>
+        
+		<section id="content">
+			<div class="content-wrap" style="padding:40px">
+				<div class="container clearfix">
+
+					<div class="row gutter-40 col-mb-80" style="margin-left: 200px">
+						<!-- Post Content
+						============================================= -->
+						<div class="postcontent col-lg-9">
+                            <center>
+                                <h1 style="margin-bottom:50px">File Upload</h1>
+                            </center>
+							<form name="f" action="upload_ok" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+								<div class="row">
+									<div class="col-lg-6 bottommargin" >
+										<label>Select Photo</label><br>
+										<input name=photo id="input-1" type="file" class="file" data-show-preview="true" accept="image/png, image/jpeg, image/jpg">
+									</div>
+
+									<div class="col-lg-6 bottommargin" >
+										<label>Mp3 File</label><br>
+										<input name=music id="input-2" type="file" class="file" data-show-preview="false" accept="audio/mp3">
+										<br>
+										<label>Genre</label><br>
+										<select name="genre"	sytle="font-family:'메이플스토리;" >
+											<option value="none">=== SELECT ===</option>
+											<option value="ballade" selected>BALLADE</option>
+											<option value="rock">ROCK</option>
+											<option value="hiphop">HIPHOP</option>
+											<option value="ccm">CCM</option>
+											<option value="pop">POP</option>
+										</select>
+										<br>
+										<label>EMail</label><br>
+                                        <input name=email id="input-2" class="file" style="width:auto; min-width:390px;font-family:메이플스토리;" value={{user.uemail}} readonly>
+                                        <br>
+                                        <label>Title</label><br>
+                                        <input name=title id="input-2" class="file" style="width:auto; min-width:390px;font-family:메이플스토리;" >
+                                        <br>
+                                        <label>singer</label><br>
+                                        <input name=singer id="input-2" class="file" style="width:auto; min-width:390px;font-family:메이플스토리;" >
+                                        <br>
+										<label>Explanation</label><br>
+										<textarea name=explanation cols="46" rows="10" style='font-family:메이플스토리;'></textarea>
+
+									</div>
+									<center>
+                                        <!--
+										<div>
+											<button type="submit" style="background-color:#131722;
+											color:white;
+											width:100px;
+											height:40px;
+											font-size:20px;
+											font-family:'메이플스토리';">Submit
+										</div>
+                                        -->
+                                        <div>
+											<input type="button" style="background-color:#131722;
+											color:white;
+											width:100px;
+											height:40px;
+											font-size:20px;
+											font-family:'메이플스토리';" value="Submit" onclick="check()">
+										</div>
+									</center>
+								<div>
+							</form>
+                                
+						</div><!-- .postcontent end -->
+			
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+        <script>
+            $(document).ready(function () {
+                $("#input-5").fileinput({ showCaption: false });
+
+                $("#input-6").fileinput({
+                    showUpload: false,
+                    maxFileCount: 10,
+                    mainClass: "input-group-lg",
+                    showCaption: true
+                });
+
+                $("#input-8").fileinput({
+                    mainClass: "input-group-md",
+                    showUpload: true,
+                    previewFileType: "image",
+                    browseClass: "btn btn-success",
+                    browseLabel: "Pick Image",
+                    browseIcon: "<i class=\"icon-picture\"></i> ",
+                    removeClass: "btn btn-danger",
+                    removeLabel: "Delete",
+                    removeIcon: "<i class=\"icon-trash\"></i> ",
+                    uploadClass: "btn btn-info",
+                    uploadLabel: "Upload",
+                    uploadIcon: "<i class=\"icon-upload\"></i> "
+                });
+
+                $("#input-9").fileinput({
+                    previewFileType: "text",
+                    allowedFileExtensions: ["txt", "md", "ini", "text"],
+                    previewClass: "bg-warning",
+                    browseClass: "btn btn-primary",
+                    removeClass: "btn btn-secondary",
+                    uploadClass: "btn btn-secondary",
+                });
+
+                $("#input-10").fileinput({
+                    showUpload: false,
+                    layoutTemplates: {
+                        main1: "{preview}\n" +
+                            "<div class=\'input-group {class}\'>\n" +
+                            "       {browse}\n" +
+                            "       {upload}\n" +
+                            "       {remove}\n" +
+                            "   {caption}\n" +
+                            "</div>"
+                    }
+                });
+
+                $("#input-11").fileinput({
+                    maxFileCount: 10,
+                    allowedFileTypes: ["image", "video"]
+                });
+
+                $("#input-12").fileinput({
+                    showPreview: false,
+                    allowedFileExtensions: ["zip", "rar", "gz", "tgz"],
+                    elErrorContainer: "#errorBlock"
+                });
+            });
+        </script>
+
+{% endblock %}

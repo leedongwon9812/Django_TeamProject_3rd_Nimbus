@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% load static %}
+        
+{% block content %}	
+
+<!-- Content
+============================================= -->
+<section id="content">
+	<div class="content-wrap">
+	<div class="container">
+		<h3 style="font-size: 40px;color:black">{{user.unick}}'s Profile</h3>
+		<div class="row mb-5">
+			<div class="col-lg-6" style="width:200px;height: 200px;">
+				<a ><img src="{% static user.uimage %}" alt="image" style="max-width: 100%; height: auto;border-radius: 50%;"></a>
+			</div>
+			<div class="col-lg-6" style="margin-top: 0px;">
+				<div class="entry-title">
+				</div>
+				<div class="entry-meta">
+				<ul style="font-size: 20px;color:black">
+					<li>Name: {{user.uname}}</li>
+					<li>Nick: {{user.unick}}</li>
+					<li>Email: {{user.uemail}} </li>
+				</ul>
+				</div>
+				<div class="entry-content">
+				<p>{{user.udesc}}</p>
+				</div>
+				
+			</div>
+		</div>
+		
+			
+
+					<!-- Tab Content 2
+					============================================= -->
+					<div class="tab-content" id="tabs-2">
+						<div class="row gutter-20 align-items-stretch">
+
+							<div class="col-md-6 px-0">
+								<div class="row mx-0 gutter-20">
+							
+
+									<div class="col-12">
+										
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<h3>Recently Uploaded</h3>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in my_musics_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="/stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="/stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+
+					</div>
+					<br><br><br><br>
+
+					<h2>Playlist</h2>
+
+					{% for x in list1 %}
+					<h3>{{x.pname}}</h3>
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for y in x.music %}
+						<div class="oc-item" data-animate="fadeInDown">
+							<img src="{% static y.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="../stream2/{{y.pid}}">{{y.mtitle}}</a></h3>
+										<span><a href="../stream2/{{y.pid}}">{{y.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static y.mp3 %}" data-poster="{% static y.mphoto %}" data-title="{{y.mtitle}}" data-singer="{{y.mtitle}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					<br/><br/>
+					{% endfor %}
+
+		<div class="section footer-stick">
+			<div class="container center clearfix">
+				<div class="heading-block bottommargin-sm border-bottom-0">
+					<span class="before-heading color"></span>
+					<br>
+					<h2>Start making your Music Plans</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section><!-- #content end -->
+{% endblock %}

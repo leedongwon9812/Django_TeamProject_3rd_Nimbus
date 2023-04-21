@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% load static %}
+        
+{% block content %}
+    <style>
+        #audiostream{
+            height:400px;
+            width:950px;
+			background-image: url("{% static '/images/감성.jpg' %}");
+			background-size: cover;
+            
+
+        }
+        .imagestream{
+            position: relative;
+            top:13%;
+            left: 60%;
+            width:300px;
+            height: 300px;
+        }
+		.playlist{
+			
+			position: relative;
+			top:-62%;
+			left: 5%;
+			width:400px;
+			height: 300px;
+			overflow-y:scroll;
+		}
+    </style>
+    <!-- Content
+		============================================= -->
+        <script src="{% static '/js/trim.js' %}"></script>
+        <script language="javascript">
+            function check() {
+                var commentval = f.message.value;
+                commentval = trim(commentval);
+                if (commentval.length == 0) {
+                    alert("Please enter a comment");
+                    f.message.value = "";
+                    f.message.focus();
+                    return false;
+                }
+                
+                f.submit();
+            }
+
+            function checkByteLen(str, size) {
+                var byteLen = getByteLen(str);
+                if (byteLen <= size) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function getByteLen(str) {
+                return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+            }
+            
+        </script>
+
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="row gutter-40 col-mb-80">
+						<div class="postcontent col-lg-9">
+
+							<!-- Portfolio Single Video
+							============================================= -->
+                            
+                            <!-- Audio Player
+                            ============================================= -->
+                            <div id="audiostream">
+								<img src="{% static '/images/view.png' %}" alt="" style="width:25px;height:auto;position:absolute;top:400px;left:825px;">
+                        		<label for="" style="font-size:18px;position: absolute;top:400px;left:860px;">{{music.mview}} views</label>
+                                <img class="imagestream" src="{% static music.mphoto %}"></img>
+								<div class="playlist">
+									<div class="songs-lists-wrap">
+										{% for music in playlist_list %}
+										<div class="songs-list">
+											<div class="songs-image track-image col-auto">
+												<a href="#" class="track-list"  data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}">
+													<img src="{% static music.mphoto %}" alt="Image 1"><span><i class="icon-play"></i></span>
+												</a>
+											</div>
+											<div class="songs-name track-name flex-grow-1 col-auto"><a href="../stream2/{{music.pid}}">{{music.mtitle}}<br><span>{{music.msinger}}</span></a></div>
+											<div class="songs-button dropdown col-auto">
+												<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false"><i class="icon-line-ellipsis"></i></a>
+												<ul class="dropdown-menu dropdown-menu-end">
+													<li>
+														<a class="dropdown-item" href="#"><span class="icon-music"></span> Add to Playlist</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										{% endfor %}
+										
+									</div>
+								</div>
+                            </div>
+							<div class="row col-mb-50">
+								<!-- Portfolio Single Content
+								============================================= -->
+								<div class="col-md-6 col-lg-7 portfolio-single-content" style="padding-top:50px;">
+
+									<!-- Portfolio Single - Description
+									============================================= -->
+									<div class="fancy-title title-border" >
+										<h2>Music Info:</h2>
+									</div>
+
+									<p>{{music.mdesc}}</p>
+									<!-- Portfolio Single - Description End -->
+
+								</div><!-- .portfolio-single-content end -->
+
+								<div class="col-md-6 col-lg-5" style="padding-top:50px;">
+
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="button button-3d button-black m-0" id="register-form-submit" name="register-form-submit" value="New List" onClick="location.href='../newPlaylist/{{id}}'"></input>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="button button-3d button-black m-0" id="register-form-submit" name="register-form-submit" value="Add List" onClick="location.href='../addPlaylist/{{id}}'"></input>
+									<br><br>
+									
+									<!-- Portfolio Single - Meta
+									============================================= -->
+									<div class="card event-meta">
+										<div class="card-body">
+											<ul class="portfolio-meta mb-0">
+												<li><span><i class="icon-lightbulb"></i>Title:</span>{{music.mtitle}}</li>
+												<li><span><i class="icon-calendar3"></i>Upload on:</span>{{music.mrdate}}</li>
+												<li><span><i class="icon-user"></i>Singer:</span>{{music.msinger}}</li>
+												<li><span><i class="icon-link"></i>Profile:</span><a href="../profile2/{{music.uemail}}">{{music.uemail}}</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- Portfolio Single - Meta End -->
+
+									<!-- Portfolio Single - Share
+									============================================= -->
+									<div class="si-share border-0 d-flex justify-content-between align-items-center mt-4">
+											<span>Share:</span>
+										<div>
+											<a href="https://www.facebook.com/" class="social-icon si-borderless si-facebook">
+												<i class="icon-facebook"></i>
+												<i class="icon-facebook"></i>
+											</a>
+											<a href="https://twitter.com/?lang=ko" class="social-icon si-borderless si-twitter">
+												<i class="icon-twitter"></i>
+												<i class="icon-twitter"></i>
+											</a>
+											<a href="https://www.pinterest.co.kr/" class="social-icon si-borderless si-pinterest">
+												<i class="icon-pinterest"></i>
+												<i class="icon-pinterest"></i>
+											</a>
+											<a href="https://www.google.co.kr/" class="social-icon si-borderless si-gplus">
+												<i class="icon-gplus"></i>
+												<i class="icon-gplus"></i>
+											</a>
+											<a href="https://mail.google.com/" class="social-icon si-borderless si-email3">
+												<i class="icon-email3"></i>
+												<i class="icon-email3"></i>
+											</a>
+										</div>
+									</div>
+									<!-- Portfolio Single - Share End -->
+
+								</div>
+							</div>
+
+							<div class="divider divider-center"><i class="icon-circle"></i></div>
+
+							<!-- Related Portfolio Items
+							============================================= -->
+							<h4>Related Musics:</h4>
+
+							<div id="related-portfolio" class="owl-carousel portfolio-carousel carousel-widget" data-margin="20" data-pagi="false" data-autoplay="5000" data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+								{% for music in musics %}
+								<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+									<img src="{% static music.mphoto %}" alt="Image 1">
+									<div class="bg-overlay">
+										<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+											<div class="portfolio-desc py-0">
+												<h3><a href="/stream/{{music.id}}">{{music.mtitle}}</a></h3>
+												<span><a href="/stream/{{music.id}}">{{music.msinger}}</a></span>
+											</div>
+											<div data-hover-animate="fadeIn" data-hover-speed="400">										
+												<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div><!-- .portfolio-carousel end -->
+
+						</div>
+
+						<div class="sidebar col-lg-3">
+							<div class="sidebar-widgets-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Comments</h4>
+									
+									<div class="posts-sm row col-mb-30" id="post-list-sidebar">
+										<div class="entry col-12" style="overflow-y:scroll;height: 850px">
+											{% for comment in comment_list %}
+											<div class="grid-inner row g-0">
+												<div class="col-auto">
+													<a href="/profile2/{{comment.uemail}}"><img src="{% static comment.uimage %}" alt="image" style="max-width: 60px; height: auto;border-radius: 50%;"></a>
+												</div>
+												<div class="col ps-3">
+														<h5 style="margin-bottom:0px;"><a href="/profile2/{{comment.uemail}}">{{comment.unick}}</a></h5>
+													<div class="entry-title">
+														<h4><a>{{comment.cdesc}}</a></h4>
+													</div>
+													<div class="entry-meta">
+														<ul>
+															<li>{{comment.crdate}}</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<br>
+											{% endfor %}
+										</div>
+										
+										<form name="f" action="comment_ok/{{pid}}" method="post">
+										{% csrf_token %}
+											<textarea class="required sm-form-control input-block-level short-textarea" id="quick-contact-form-message" name="message" rows="4" cols="30" placeholder="Comment"></textarea>
+											<input type="button" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button button-small button-3d m-0" value="Send" style="width:294px;" onclick="check()"></input>
+										</form>
+									</div>         
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+        
+
+{% endblock %}

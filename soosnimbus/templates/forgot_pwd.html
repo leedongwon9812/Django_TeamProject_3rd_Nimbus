@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+      <!-- Content
+      ============================================= -->
+        <script src="{% static '/js/trim.js' %}"></script>
+        <script language="javascript">
+
+            function check() {
+                var idval = f.email.value;
+                idval = trim(idval);
+                if (idval.length == 0) {
+                    alert("Please enter your email :)");
+                    f.email.value = "";
+                    f.email.focus();
+                    return false;
+                }
+                f.submit();
+            }
+
+        </script>
+
+      <section id="content">
+         <div class="content-wrap py-0">
+            <div class="section p-0 m-0 h-100 position-absolute" style="background: url('{% static '/demos/music/images/login/plant.jpg' %}') center center no-repeat; background-size: cover;"></div>
+      
+               <div class="section bg-transparent min-vh-100 p-0 m-0">
+                  <div class="vertical-middle">
+                     <div class="container-fluid py-5 mx-auto">
+                        <div class="center">
+                           <a href="index.html"><img src="{% static '/demos/music/images/nim_main.png' %}" alt="Nimbus Logo"></a> 
+                     </div>
+
+                     <div class="card mx-auto rounded-0 border-0" style="max-width: 400px; background-color: rgba(255,255,255,0.6);">
+                        <div class="card-body" style="padding: 40px;">
+							<!--<div>{{error}}</div>-->
+                           <form id="forgot_pwd_form" name="f" class="mb-0" action="forgot_pwd_ok" method="post">
+							{% csrf_token %}
+                              <h3>Password assistance</h3>
+
+                              <div class="row">
+                                 <div class="col-12 form-group">
+                                    <label for="email">Enter your email</label>
+                                    <input type="text" id="email" name="email" value="" placeholder="20 characters or less" class="form-control not-dark" onkeydown="enterCheck(this)" />
+                                 </div>
+                                 <h5 style="margin-bottom: 15px;">Enter the email address associated with your Nimbus account and we will send you a link to reset your password.</h5>                                                                 
+                                 
+                                 <div class="col-12 form-group"> 
+                                    <input type="button" class="button button-3d button-black m-0" id="login-form-submit" name="login-form-submit" value="continue" style="cursor:pointer" onclick ="check()"/></input>									                                    
+                                 </div> 
+                              </div>
+                           </form>
+
+                           <div class="line line-sm"></div>
+
+                           <!--
+                           <div class="w-100 text-center">
+                              <h4 style="margin-bottom: 15px;">or Login with:</h4>
+                              <a href="#" class="button button-rounded si-facebook si-colored">Facebook</a>
+                              <span class="d-none d-md-inline-block">or</span>
+                              <a href="#" class="button button-rounded si-twitter si-colored">Twitter</a>
+                           </div>
+                           -->
+                        </div>
+                     </div>
+
+                     <div class="text-center dark mt-3"><small>Copyrights &copy; All Rights Reserved by Nimbus Inc.</small></div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </section><!-- #content end -->
+
+{% endblock %}

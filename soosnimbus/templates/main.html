@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+
+{% load static %}
+        
+{% block content %}
+
+        <!-- Content
+		============================================= -->
+		<section id="content" class="bg-color2">
+			<div class="content-wrap py-0" style="overflow: visible;">
+				<div class="container clearfix" style="z-index: 7;">
+					<br/>
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>New Songs!  Recently uploaded music</h3>
+						<span>The new uploaded music in real time</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+
+					<div class="row topmargin-lg clearfix">
+						<h3 style="color:white">Weekly Hot Tracks</h3>
+						<span>View Ranking List for Last Week</span>
+						
+						<div class="col-lg-6">
+							<div class="heading-block border-0 dark" style="margin-bottom: 15px;">
+
+							</div>
+
+							<!-- Song Lists Items
+							============================================= -->
+							<div class="songs-lists-wrap">
+
+								<!-- List Items
+								============================================= -->
+								{% for music in rank1_list %}
+								<div class="songs-list">
+									
+								<div class="songs-number col-auto">{{music.rank}}</div>
+									
+									<div class="songs-image track-image col-auto">
+										<a href="#" class="track-list"  data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}">
+											<img src="{% static music.mphoto %}" alt="Image 1"><span><i class="icon-play"></i></span>
+										</a>
+									</div>
+									<div class="songs-name track-name flex-grow-1 col-auto"><a href="stream/{{music.id}}">{{music.mtitle}}<br><span>{{music.msinger}}</span></a></div>
+									<div class="songs-button dropdown col-auto">
+										<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false"><i class="icon-line-ellipsis"></i></a>
+										<ul class="dropdown-menu dropdown-menu-end">
+											<li>
+												<a class="dropdown-item" href="#"><span class="icon-music"></span> Add to Playlist</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								{% endfor %}
+							
+							</div>
+						</div>
+
+						<div class="w-100 d-block d-md-block d-lg-none topmargin-lg clear"></div>
+
+						<div class="col-lg-6">
+							<div class="heading-block border-0 dark" style="margin-bottom: 15px;">
+
+							</div>
+							<div class="songs-lists-wrap">
+
+								<!-- List Items
+								============================================= -->
+								{% for music in rank2_list %}
+								<div class="songs-list">
+									
+								<div class="songs-number col-auto">{{music.rank}}</div>
+									
+									<div class="songs-image track-image col-auto">
+										<a href="#" class="track-list"  data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}">
+											<img src="{% static music.mphoto %}" alt="Image 1"><span><i class="icon-play"></i></span>
+										</a>
+									</div>
+									<div class="songs-name track-name flex-grow-1 col-auto"><a href="stream/{{music.id}}">{{music.mtitle}}<br><span>{{music.msinger}}</span></a></div>
+									<div class="songs-button dropdown col-auto">
+										<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false"><i class="icon-line-ellipsis"></i></a>
+										<ul class="dropdown-menu dropdown-menu-end">
+											<li>
+												<a class="dropdown-item" href="#"><span class="icon-line-plus"></span> Add to Queue</a>
+												<a class="dropdown-item" href="#"><span class="icon-music"></span> Add to Playlist</a>
+												<a class="dropdown-item" href="#"><span class="icon-line-cloud-download"></span> Download Offline</a>
+												<a class="dropdown-item" href="#"><span class="icon-line-heart"></span> Love</a>
+												<div class="dropdown-divider"></div>
+												<a class="dropdown-item" href="#"><span class="icon-line-share"></span> Share</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+
+					<br/><br/>
+
+					<!-- 발라드 -->
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>Ballad</h3>
+						<span>The love story with a romantic and emotional melody</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in ballad_music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+					<br/>
+					<br/>
+					<!-- Rock -->
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>Rock</h3>
+						<span>Experience of a diverse world of rock, featuring back beats, repetitive rhythms, intense guitar and drum sounds</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in rock_music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+					<br/>
+					<br/>
+					<!-- 힙합 -->
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>Hip hop</h3>
+						<span>Unique lyrics and beats rap and free style of music</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in hiphop_music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+					<br/>
+					<br/>
+					<!-- Pop -->
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>Pop</h3>
+						<span>Popular melodies and rhythms, mainstream style, life and romance songs</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in pop_music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+						
+					</div>
+					<br/>
+					<br/>
+					<!-- CCM -->
+					<div class="heading-block bottommargin-sm border-0 dark">
+						<h3>CCM</h3>
+						<span>A popular music with Christian faith in the lyrics. Christian Song</span>
+					</div>
+
+					<!-- Carousel
+					============================================= -->
+					<div id="oc-popular-songs" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="6" data-items-xl="6">
+
+						<!-- Carousel Items
+						============================================= -->
+						{% for music in ccm_music_list %}
+						<div class="oc-item" data-animate="fadeInDown" data-delay="{{music.delay}}">
+							<img src="{% static music.mphoto %}" alt="Image 1">
+							<div class="bg-overlay">
+								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-center justify-content-between">
+									<div class="portfolio-desc py-0">
+										<h3><a href="stream/{{music.id}}">{{music.mtitle}}</a></h3>
+										<span><a href="stream/{{music.id}}">{{music.msinger}}</a></span>
+									</div>
+									<div data-hover-animate="fadeIn" data-hover-speed="400">										
+										<a href="#" class="text-light mx-0 track-list" data-track="{% static music.mp3 %}" data-poster="{% static music.mphoto %}" data-title="{{music.mtitle}}" data-singer="{{music.msinger}}"><i class="icon-play"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+						
+					</div>
+
+					<div class="clear"></div>
+
+					<div class="row topmargin-lg dark clearfix">
+						<!-- Soundcloud
+						============================================= -->
+						<!--
+						<div class="col-lg-4 col-md-6">
+							<h3>Soundcloud Embed</h3>
+							<iframe height="130" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/301161123&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe><br><br>
+							<iframe height="130" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278002889&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+						</div>
+						-->
+						<!-- Mobile App
+						============================================= -->
+						<!--
+						<div class="col-lg-7 col-md-5 offset-md-1 overflow-hidden">
+							<div class="row clearfix">
+								<div class="col-lg-6 order-lg-12">
+									<div class="d-block d-md-none d-lg-none d-xl-block topmargin clear"></div>
+									<h3>Grab it Now in Mobile</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, impedit.</p>
+									<a href="#" class="button button-small button-rounded button-desc ms-0 clearfix"><i class="icon-apple"></i><div>App Store<span>Free Forever, Downlod It Now</span></div></a>
+									<a href="#" class="button button-small button-rounded button-desc ms-0 clearfix" style="margin-top: 10px"><i class="icon-android"></i><div>Google Play<span>Free Forever, Downlod It Now</span></div></a>
+								</div>
+								<div class="d-block d-md-block d-lg-none topmargin clear"></div>
+								<div class="col-lg-6 order-lg-1 d-sm-none d-md-none d-lg-block">
+									<img src="{% static '/demos/music/images/iphone.png' %}" alt="Mobile" data-animate="fadeInUp">
+								</div>
+							</div>
+						</div>
+						-->
+					</div>
+					
+
+				</div>
+			</div>
+		</section><!-- #content end -->
+{% endblock %}

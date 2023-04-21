@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+        
+{% block content %}	
+
+<style>
+    .modal_overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+    }
+
+    .modal_window {
+        background: white;
+        backdrop-filter: blur(13.5px);
+        -webkit-backdrop-filter: blur(13.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 500px;
+        height: 400px;
+        position: relative;
+        padding: 10px;
+    }
+    .confirm{
+        width: 80px;
+        height: 40px;
+        position: absolute;
+        top: 80%;
+        left: 160px;
+        font-family: 메이플스토리;
+    }
+    .cancel{
+        width: 80px;
+        height: 40px;
+        position: absolute;
+        top: 80%;
+        left: 260px;
+        font-family: 메이플스토리;
+    }
+    #text{
+        font-family: 메이플스토리;
+        font-size: 15px;
+        resize: none;
+    }
+</style>
+
+
+<div class="modal_overlay">
+    <div class="modal_window">
+        <div>
+            <center>
+                <form name="f" action="Int_ok" method="post">
+                {% csrf_token %}
+                    <h2>Edit Introduction</h2>
+                    <textarea name="text" id="text" cols="40" rows="9">{{user.udesc}}</textarea>
+                    <input type="button" class="confirm" value="confirm" onclick=f.submit(); />
+                    <input type="reset" class="cancel" value="cancel" onclick=history.back(); />
+                </form>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
